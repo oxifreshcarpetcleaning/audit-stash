@@ -129,7 +129,7 @@ class ElasticMappingShell extends Shell
         case 'uuid':
             return ['type' => 'string', 'index' => 'not_analyzed', 'null_value' => '_null_'];
         case 'integer':
-            return ['type' => 'integer', 'null_value' => ~PHP_INT_MAX];
+            return ['type' => 'long', 'null_value' => ~PHP_INT_MAX];
         case 'date':
             return ['type' => 'date', 'format' => 'dateOptionalTime||basic_date||yyy-MM-dd', 'null_value' => '0001-01-01'];
         case 'datetime':
@@ -145,10 +145,12 @@ class ElasticMappingShell extends Shell
             return ['type' => 'boolean'];
         default:
             return [
-                'type' => 'multi_field',
-                'fields' => [
-                    $column => ['type' => 'string', 'null_value' => '_null_'],
-                    'raw' => ['type' => 'string', 'index' => 'not_analyzed', 'null_value' => '_null_', 'ignore_above' => 256]
+                'type' => 'text',
+                'index' => 'not_analyzed',
+                "fields" => [
+                    $column => [
+                        'type' => 'text'
+                    ]
                 ]
             ];
         }
