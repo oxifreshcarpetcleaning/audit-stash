@@ -10,7 +10,7 @@
     "require-dev": {
         "phpunit/phpunit": "*",
         "cakephp/cakephp": "~3.0",
-        "cakephp/elastic-search": "~0.1",
+        "cakephp/elastic-search": "1.0.x-dev",
         "friendsofcake/process-mq": "dev-master"
     },
     "suggest": {
